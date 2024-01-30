@@ -1,10 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-
-const store = configureStore({
+import todoReducer from './Store/Slices/todoSlice'
+export const store = configureStore({
   reducer: {
-    // Define your reducers here
-    // e.g., counter: counterReducer,
+    todos: todoReducer,
   },
 });
-
-export default store;
+// export type RootState = ReturnType<typeof store.getState>
+// export type AppDispatch = typeof store.dispatch
