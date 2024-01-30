@@ -1,8 +1,9 @@
 import React, { useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {ButtonStyle, ListStyle, ListItemStyle, ListItemTextStyle, TextFieldStyle } from './HomeStyle';
-import { addTodo } from './Store/Slices/todoSlice'
+import { addTodo , deleteTodo , editTodo } from './Store/Slices/todoSlice'
 import { RootState } from './store';
+import { Box, Button } from '@mui/material';
 
 const TodoListComponent: React.FC = () => {
   const [todoText, setTodoText] = useState('');
@@ -18,6 +19,13 @@ const TodoListComponent: React.FC = () => {
     setTodoText('');
   };
 
+  const handleDeleteButtonClick = (id: number) =>{
+    dispatch(deleteTodo(id));
+};
+const handleEditButtonClick = (id: number) =>{
+     
+}
+
   return (
     <Fragment>
         <TextFieldStyle
@@ -30,7 +38,11 @@ const TodoListComponent: React.FC = () => {
         <ListStyle>
           <ListItemStyle>
             {todoList.map((item: { id: number; name: string; }) => (
-              <ListItemTextStyle key={item.id}>{item.name}</ListItemTextStyle>
+                 <Box>
+                 <ListItemTextStyle key={item.id}>{item.name}
+                 <Button onClick={() => handleDeleteButtonClick(item.id)}>Delete</Button>
+                 <Button onClick={() => handleEditButtonClick(item.id)}>Edit</Button></ListItemTextStyle>
+               </Box>
             ))}
           </ListItemStyle>
         </ListStyle>
