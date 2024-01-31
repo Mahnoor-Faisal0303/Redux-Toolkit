@@ -1,38 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import uuid from 'react-uuid';
 
 interface TodoState {
-    todoList: { id: number; name: string }[];
-    nextId: number;
+    todoList: { id: string; name: string }[];
 }
 
 const todoSlice = createSlice({
     name: 'todos',
     initialState: {
         todoList: [],
-        nextId: 1,
     },
     reducers: {
-        // addTodo: (state: TodoState, action: PayloadAction<string>) => {
-        //     state.todoList.push({ id: state.nextId, name: action.payload });
-        //     state.nextId++;
-        // },
         addTodo: (state: TodoState, action: PayloadAction<string>) => {
-            state.todoList = [...state.todoList, { id: state.nextId, name: action.payload }];
-            state.nextId++;
-            console.log(state.nextId);
+            state.todoList = [...state.todoList, { id: uuid(), name: action.payload }];
         },
-        deleteTodo: (state: TodoState, action: PayloadAction<number>) => {
+        deleteTodo: (state: TodoState, action: PayloadAction<string>) => {
             state.todoList = state.todoList.filter((item) => item.id !== action.payload);
         },
-
-        editTodo: () => {
-            
-
-        }
     },
 });
 
-export const { addTodo, deleteTodo, editTodo } = todoSlice.actions;
+export const { addTodo, deleteTodo } = todoSlice.actions;
 export default todoSlice.reducer;
 
 

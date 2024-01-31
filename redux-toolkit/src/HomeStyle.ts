@@ -10,22 +10,22 @@ export const BoxStyle = styled(Box)({
   padding: "20px",
   maxWidth: "615px",
   margin: "30px",
-  background:"none",
+  background: "none",
 });
 
 export const TypographyStyle = styled(Typography)({
   color: "#ab003c",
   fontFamily: "cursive",
-  fontWeight:"bolder",
+  fontWeight: "bolder",
 });
 
 export const TextFieldStyle = styled(TextField)({
   margin: "10px",
-  padding:"0px",
+  padding: "0px",
   width: "100%",
-  height:"auto",
-  border:"none",
-  borderRadius:"5px",
+  height: "auto",
+  border: "none",
+  borderRadius: "5px",
   backgroundImage: "linear-gradient(white,#fad4e9)",
 });
 
@@ -34,20 +34,19 @@ export const ButtonStyle = styled(Button)({
   fontFamily: "cursive",
   fontSize: "30px",
   color: "white",
-  height:"50px",
+  height: "50px",
   width: "120px",
   fontWeight: "bold",
   borderRadius: "50px",
   backgroundImage: "linear-gradient(to right, #c62828, #ef6c00)",
-  padding: '10px',
-  boxShadow: '2px 2px 2px 2px #ef6c00',
+  padding: "10px",
+  boxShadow: "2px 2px 2px 2px #ef6c00",
   transition: "background-color 0.3s ease",
-  // backgroundImage: `url('./assets/flower.png')` ,
 
-  '&:hover': {
+  "&:hover": {
     backgroundImage: "linear-gradient(to right, yellow, #ef6c00)",
     width: "117px",
-    height:"45px", 
+    height: "45px",
   },
 });
 export const ListStyle = styled(List)({
@@ -57,15 +56,31 @@ export const ListStyle = styled(List)({
 export const ListItemStyle = styled(ListItem)({
   display: "block",
   fontWeight: "bold",
-  color: "red"
+  color: "red",
 });
-export const ListItemTextStyle  = styled(ListItemText)({
-  borderRadius:"20px",
-  width:"550px",
+export const ListItemTextStyle = styled(ListItemText)({
+  borderRadius: "20px",
+  width: "550px",
   backgroundImage: "linear-gradient(to left,#c62828, #ef6c00)",
-  padding:"10px 30px 10px 30px",
+  padding: "10px 30px 10px 30px",
   color: "white",
-  fontWeight:"bold",
-
+  fontWeight: "bold",
 });
 
+export const DeleteEditButtonStyle = styled(Button)({
+  fontFamily: "cursive",
+  fontSize: "20px",
+  color: "white",
+  height: "50px",
+  width: "120px",
+  fontWeight: "bold",
+  borderRadius: "50px",
+  backgroundImage: "linear-gradient(to right, #c62828, #ef6c00)",
+  padding: "10px",
+  boxShadow: "2px 2px 2px 2px #ef6c00",
+  transition: "background-color 0.3s ease",
+  "&:hover": {
+    backgroundImage: "linear-gradient(to right, yellow, #ef6c00)",
+    width: "117px",
+  },
+});

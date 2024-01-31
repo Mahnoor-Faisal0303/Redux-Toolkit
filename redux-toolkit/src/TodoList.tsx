@@ -1,30 +1,29 @@
 import React, { useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {ButtonStyle, ListStyle, ListItemStyle, ListItemTextStyle, TextFieldStyle } from './HomeStyle';
-import { addTodo , deleteTodo , editTodo } from './Store/Slices/todoSlice'
+import {ButtonStyle, ListStyle, ListItemStyle, ListItemTextStyle, TextFieldStyle, DeleteEditButtonStyle } from './HomeStyle';
+import { addTodo , deleteTodo } from './Store/Slices/todoSlice'
 import { RootState } from './store';
-import { Box, Button } from '@mui/material';
+import { Alert, Box } from '@mui/material';
 
 const TodoListComponent: React.FC = () => {
   const [todoText, setTodoText] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
   const dispatch = useDispatch();
   const todoList = useSelector((state: RootState) => state.todos.todoList);
 
   const handleAddButtonClick = () => {
     if (todoText.trim() === '') {
-      alert("you must write something");
+      setShowAlert(true); 
       return;
     }
+    setShowAlert(false); 
     dispatch(addTodo(todoText));
     setTodoText('');
   };
 
-  const handleDeleteButtonClick = (id: number) =>{
+  const handleDeleteButtonClick = (id: string) =>{
     dispatch(deleteTodo(id));
 };
-const handleEditButtonClick = (id: number) =>{
-     
-}
 
   return (
     <Fragment>
@@ -37,15 +36,21 @@ const handleEditButtonClick = (id: number) =>{
         <ButtonStyle onClick={handleAddButtonClick}>Add</ButtonStyle>
         <ListStyle>
           <ListItemStyle>
-            {todoList.map((item: { id: number; name: string; }) => (
-                 <Box>
+            {todoList.map((item: { id: string; name: string; }) => (
+                 <Box key={item.id}>
                  <ListItemTextStyle key={item.id}>{item.name}
-                 <Button onClick={() => handleDeleteButtonClick(item.id)}>Delete</Button>
-                 <Button onClick={() => handleEditButtonClick(item.id)}>Edit</Button></ListItemTextStyle>
+                 <DeleteEditButtonStyle onClick={() => handleDeleteButtonClick(item.id)}>Delete</DeleteEditButtonStyle>
+                </ListItemTextStyle>
                </Box>
             ))}
           </ListItemStyle>
         </ListStyle>
+
+        {showAlert && (
+        <Alert variant="filled" severity="info">
+        Please write something!
+      </Alert>
+      )}
     </Fragment>
   );
 };
