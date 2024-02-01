@@ -1,12 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import Home from './Home.tsx'
-import './index.css'
-import { store } from './store.ts'
-import { Provider } from 'react-redux'
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import LoginScreen from './LoginScreen';
+import Home from './Home';
+import SignupScreen from './SignupScreen';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
-    <Home />
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginScreen />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/Signup" element={<SignupScreen />} />
+      </Routes>
+    </Router>
   </Provider>
 );
+
