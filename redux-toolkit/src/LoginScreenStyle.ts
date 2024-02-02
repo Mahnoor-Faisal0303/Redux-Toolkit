@@ -5,11 +5,11 @@ export const BoxStyle = styled(Box)({
   flexDirection: "column",
   alignItems: "center",
   textAlign: "center",
-  width: "auto",
+  width: "300px",
   border: "3px solid black",
   borderRadius: "10px",
   padding: "20px",
-  margin: "30px",
+  margin: "50px auto ",
   //background: "gray",
  // backgroundImage: "linear-gradient(to top, yellow, #ef6c00)",
 });

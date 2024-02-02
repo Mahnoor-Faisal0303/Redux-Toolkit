@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { BoxStyle, TypographyStyle } from './LoginScreenStyle';
-import { Button, IconButton, InputAdornment, Link, OutlinedInput, TextField } from '@mui/material';
+import { Alert, Button, IconButton, InputAdornment, Link, OutlinedInput, TextField } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
@@ -12,30 +12,29 @@ import { RootState } from './store';
 const LoginScreen: React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const [showPassword, setShowPassword] = React.useState(false);
-
     const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const [showAlert, setShowAlert] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     };
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
     const loginFunction = () => {
         const user = fakeLoginData.find(userData => userData.email === email);
         if (user && user.password === password) {
             dispatch(setCurrentUser(user));
-           
+
         } else {
-            alert("Invalid email or password");
+            setShowAlert(true);
         }
     }
+    
     const isLoggedIn = useSelector((state: RootState) => state.logins.isLoggedIn);
-    useEffect(()=>{
-        if(isLoggedIn){
+    useEffect(() => {
+        if (isLoggedIn) {
             navigate('/home');
         }
     })
@@ -55,6 +54,7 @@ const LoginScreen: React.FC = () => {
                 <OutlinedInput
                     required
                     id="outlined-required"
+                    placeholder='Enter Password'
                     type={showPassword ? 'text' : 'password'}
                     endAdornment={
                         <InputAdornment position="end">
@@ -78,6 +78,11 @@ const LoginScreen: React.FC = () => {
                 <Button variant="contained" color="success" onClick={loginFunction} >
                     Login
                 </Button>
+                {showAlert && (
+                    <Alert variant="filled" severity="info">
+                        Invalid Email or Password!
+                    </Alert>
+                )}
             </BoxStyle>
         </Fragment>
     );

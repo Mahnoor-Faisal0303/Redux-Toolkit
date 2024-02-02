@@ -1,9 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { BoxStyle, TypographyStyle } from './LoginScreenStyle';
 import { Button, IconButton, InputAdornment, OutlinedInput, TextField } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from './store';
 
 
 const SignupScreen: React.FC = () => {
@@ -16,6 +18,13 @@ const SignupScreen: React.FC = () => {
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     };
+    
+    const isLoggedIn = useSelector((state: RootState) => state.logins.isLoggedIn);
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate('/home');
+        }
+    })
 
     return (
         <Fragment>
