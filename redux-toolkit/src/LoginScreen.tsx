@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { BoxStyle, TypographyStyle } from './LoginScreenStyle';
-import { Alert, Button, IconButton, InputAdornment, Link, OutlinedInput, TextField } from '@mui/material';
+import { AlertStyle, BoxStyle, ButtonStyle, IconButtonStyle, LinkStyle, OutlinedInputStyle, TextFieldStyle, TypographyStyle } from './LoginScreenStyle';
+import { InputAdornment } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
@@ -42,8 +42,13 @@ const LoginScreen: React.FC = () => {
     return (
         <Fragment>
             <BoxStyle>
-                <TypographyStyle variant="h2">Login Page</TypographyStyle>
-                <TextField
+                <TypographyStyle variant="h3">Login / 
+                <LinkStyle href="#" underline="hover" onClick={() => navigate('/Signup')}>
+                    {' SignUP'}
+                </LinkStyle>  
+                </TypographyStyle>
+                
+                <TextFieldStyle
                     required
                     id="outlined-required"
                     type="email"
@@ -51,37 +56,36 @@ const LoginScreen: React.FC = () => {
                     placeholder='Enter your Email'
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <OutlinedInput
+                <OutlinedInputStyle
                     required
                     id="outlined-required"
                     placeholder='Enter Password'
                     type={showPassword ? 'text' : 'password'}
                     endAdornment={
                         <InputAdornment position="end">
-                            <IconButton
+                            <IconButtonStyle
                                 aria-label="toggle password visibility"
                                 onClick={handleClickShowPassword}
                                 onMouseDown={handleMouseDownPassword}
                                 edge="end"
                             >
                                 {showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
+                            </IconButtonStyle>
                         </InputAdornment>
                     }
                     // defaultValue="Enter Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <Link href="#" underline="hover" onClick={() => navigate('/Signup')}>
-                    {'Forgot Password'}
-                </Link>
-                <Button variant="contained" color="success" onClick={loginFunction} >
+                
+                <ButtonStyle variant="contained" color="success" onClick={loginFunction} >
                     Login
-                </Button>
+                </ButtonStyle>
+
                 {showAlert && (
-                    <Alert variant="filled" severity="info">
+                    <AlertStyle variant="filled" severity="info">
                         Invalid Email or Password!
-                    </Alert>
+                    </AlertStyle>
                 )}
             </BoxStyle>
         </Fragment>

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface loginState {
+interface LoginState {
     loginInfo: {
         email: string,
         password: string,
@@ -18,7 +18,7 @@ const loginSlice = createSlice({
         isLoggedIn: false,
     },
     reducers: {
-        setCurrentUser: (state: loginState, action: PayloadAction<{ email: string; password: string }>) => {
+        setCurrentUser: (state: LoginState, action: PayloadAction<{ email: string; password: string }>) => {
              state.loginInfo = action.payload;
              state.isLoggedIn = true;
              console.log(state);  

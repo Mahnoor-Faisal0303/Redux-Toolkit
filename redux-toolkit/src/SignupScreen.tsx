@@ -1,18 +1,16 @@
-import React, { Fragment, useEffect } from 'react';
-import { BoxStyle, TypographyStyle } from './LoginScreenStyle';
-import { Button, IconButton, InputAdornment, OutlinedInput, TextField } from '@mui/material';
+import React, { Fragment, useEffect, useState } from 'react';
+import { InputAdornment } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from './store';
-
+import { AlertStyle, BoxStyle, ButtonStyle, IconButtonStyle, OutlinedInputStyle, TextFieldStyle, TypographyStyle } from './LoginScreenStyle';
+import { fakeLoginData } from './Data' 
 
 const SignupScreen: React.FC = () => {
     const navigate = useNavigate();
-
     const [showPassword, setShowPassword] = React.useState(false);
-
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -26,63 +24,79 @@ const SignupScreen: React.FC = () => {
         }
     })
 
+    const [name,setName]= useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+
+    const onClickLogin = function onClickLoginFunc(){
+        if(password === confirmPassword && name && email){
+            const newUser = {email, password};
+            fakeLoginData.push(newUser);
+            navigate('/')
+        }
+        else{
+            setShowAlert(true);
+        }
+    }
+
     return (
         <Fragment>
             <BoxStyle>
                 <TypographyStyle variant="h2">
-                    Signup Page</TypographyStyle>
-                <TextField
+                    Signup Page </TypographyStyle>
+                <TextFieldStyle
                     required
                     id="outlined-required"
-                    label="Enter Name"
                     type="text"
+                    placeholder='Enter your Name'
+                    onChange={(e) => setName(e.target.value)}
                 />
-                <TextField
+                <TextFieldStyle
                     required
                     id="outlined-required"
-                    label="Enter your Email Id"
                     type="email"
+                    placeholder='Enter your Email Id'
+                   onChange={(e) => setEmail(e.target.value)}
+                    //value={setEmail}
                 />
-                <OutlinedInput
+                <OutlinedInputStyle
                     required
                     id="outlined-required"
                     type={showPassword ? 'text' : 'password'}
                     endAdornment={
                         <InputAdornment position="end">
-                            <IconButton
+                            <IconButtonStyle
                                 aria-label="toggle password visibility"
                                 onClick={handleClickShowPassword}
                                 onMouseDown={handleMouseDownPassword}
                                 edge="end"
                             >
                                 {showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
+                            </IconButtonStyle>
                         </InputAdornment>
                     }
-                    defaultValue="Enter Password"
+                    placeholder='Enter Password'
+                    onChange={(e) => setPassword(e.target.value)}
                 />
-                <OutlinedInput
+                <OutlinedInputStyle
                     required
                     id="outlined-required"
                     type={showPassword ? 'text' : 'password'}
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                            >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    defaultValue="Confirm Password"
+                    placeholder='Confirm Password'
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                 />
 
-                <Button variant="contained" color="success" onClick={() => navigate('/')}>
+                <ButtonStyle variant="contained" color="success" onClick={onClickLogin}>
                     SignUp
-                </Button>
+                </ButtonStyle>
+
+                {showAlert && (
+                    <AlertStyle variant="filled" severity="info">
+                        Invalid Email or Password!
+                    </AlertStyle>
+                )}
             </BoxStyle>
         </Fragment>
     )
