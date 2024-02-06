@@ -11,4 +11,8 @@ export const fakeLoginData = [
     email: "ghi@gmail.com",
     password: "ghi",
   },
+  {
+    email: "a",
+    password: "a",
+  },
 ];

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from './store';
 import { AlertStyle, BoxStyle, ButtonStyle, IconButtonStyle, OutlinedInputStyle, TextFieldStyle, TypographyStyle } from './LoginScreenStyle';
-import { fakeLoginData } from './Data' 
+import { fakeLoginData } from './Data'
 
 const SignupScreen: React.FC = () => {
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ const SignupScreen: React.FC = () => {
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     };
-    
+
     const isLoggedIn = useSelector((state: RootState) => state.logins.isLoggedIn);
     useEffect(() => {
         if (isLoggedIn) {
@@ -24,20 +24,23 @@ const SignupScreen: React.FC = () => {
         }
     })
 
-    const [name,setName]= useState("");
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [showAlert, setShowAlert] = useState(false);
 
-    const onClickLogin = function onClickLoginFunc(){
-        if(password === confirmPassword && name && email){
-            const newUser = {email, password};
+    const onClickLogin = function onClickLoginFunc() {
+        if (password === confirmPassword && name && email) {
+            const newUser = { email, password };
             fakeLoginData.push(newUser);
             navigate('/')
         }
-        else{
+        else {
             setShowAlert(true);
+            setTimeout(function () {
+                setShowAlert(false);
+            }, 2000);
         }
     }
 
@@ -58,8 +61,8 @@ const SignupScreen: React.FC = () => {
                     id="outlined-required"
                     type="email"
                     placeholder='Enter your Email Id'
-                   onChange={(e) => setEmail(e.target.value)}
-                    //value={setEmail}
+                    onChange={(e) => setEmail(e.target.value)}
+                //value={setEmail}
                 />
                 <OutlinedInputStyle
                     required
@@ -94,7 +97,7 @@ const SignupScreen: React.FC = () => {
 
                 {showAlert && (
                     <AlertStyle variant="filled" severity="info">
-                        Invalid Email or Password!
+                        Invalid Information!
                     </AlertStyle>
                 )}
             </BoxStyle>

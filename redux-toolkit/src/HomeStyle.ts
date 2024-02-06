@@ -1,16 +1,23 @@
 import { Box, TextField, Typography, styled } from "@mui/material";
 import Button from "@mui/material/Button";
-import { List, ListItem, ListItemText } from "@mui/material";
-
+import { List, ListItem } from "@mui/material";
+import Done from "./assets/Done.svg";
 export const BoxStyle = styled(Box)({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  textAlign: "center",
   borderRadius: "20px",
-  padding: "20px",
   maxWidth: "615px",
-  margin: "30px",
+  padding: "20px",
+  margin: "50px auto ",
   background: "none",
+  backgroundImage: `url(${Done})`,
+  backgroundRepeat: "no-repeat",
+  backgroundPositionX: "right",
+  backgroundSize: "150px",
+  backgroundColor: " rgba(244, 194, 127, 0.67);",
+  width: "auto",
 });
 
 export const TypographyStyle = styled(Typography)({
@@ -32,7 +39,7 @@ export const TextFieldStyle = styled(TextField)({
 export const ButtonStyle = styled(Button)({
   marginRight: "auto",
   fontFamily: "cursive",
-  fontSize: "30px",
+  fontSize: "25px",
   color: "white",
   height: "50px",
   width: "120px",
@@ -56,31 +63,28 @@ export const ListStyle = styled(List)({
 export const ListItemStyle = styled(ListItem)({
   display: "block",
   fontWeight: "bold",
-  color: "red",
-});
-export const ListItemTextStyle = styled(ListItemText)({
   borderRadius: "20px",
   width: "550px",
   backgroundImage: "linear-gradient(to left,#c62828, #ef6c00)",
   padding: "10px 30px 10px 30px",
   color: "white",
-  fontWeight: "bold",
+  margin:"5px",
 });
+
 
 export const DeleteEditButtonStyle = styled(Button)({
   fontFamily: "cursive",
   fontSize: "20px",
   color: "white",
   height: "50px",
-  width: "120px",
+  width: "auto",
   fontWeight: "bold",
   borderRadius: "50px",
   backgroundImage: "linear-gradient(to right, #c62828, #ef6c00)",
   padding: "10px",
-  boxShadow: "2px 2px 2px 2px #ef6c00",
   transition: "background-color 0.3s ease",
+  margin:"7px",
   "&:hover": {
     backgroundImage: "linear-gradient(to right, yellow, #ef6c00)",
-    width: "117px",
   },
 });
