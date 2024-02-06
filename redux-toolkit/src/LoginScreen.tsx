@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { AlertStyle, BoxStyle, ButtonStyle, IconButtonStyle, LinkStyle, OutlinedInputStyle, TextFieldStyle, TypographyStyle } from './LoginScreenStyle';
-import { InputAdornment } from '@mui/material';
+import { InputAdornment, Snackbar } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
@@ -29,9 +29,12 @@ const LoginScreen: React.FC = () => {
 
         } else {
             setShowAlert(true);
+            setTimeout(function () {
+                setShowAlert(false);
+            }, 2000);
         }
     }
-    
+
     const isLoggedIn = useSelector((state: RootState) => state.logins.isLoggedIn);
     useEffect(() => {
         if (isLoggedIn) {
@@ -42,12 +45,12 @@ const LoginScreen: React.FC = () => {
     return (
         <Fragment>
             <BoxStyle>
-                <TypographyStyle variant="h3">Login / 
-                <LinkStyle href="#" underline="hover" onClick={() => navigate('/Signup')}>
-                    {' SignUP'}
-                </LinkStyle>  
+                <TypographyStyle variant="h3">Login /
+                    <LinkStyle href="#" underline="hover" onClick={() => navigate('/Signup')}>
+                        {' SignUP'}
+                    </LinkStyle>
                 </TypographyStyle>
-                
+
                 <TextFieldStyle
                     required
                     id="outlined-required"
@@ -73,11 +76,10 @@ const LoginScreen: React.FC = () => {
                             </IconButtonStyle>
                         </InputAdornment>
                     }
-                    // defaultValue="Enter Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                
+
                 <ButtonStyle variant="contained" color="success" onClick={loginFunction} >
                     Login
                 </ButtonStyle>
@@ -87,6 +89,14 @@ const LoginScreen: React.FC = () => {
                         Invalid Email or Password!
                     </AlertStyle>
                 )}
+                {/* <Button onClick={handleClick}>Open Snackbar</Button> */}
+                <Snackbar
+                    //open={open}
+                    autoHideDuration={6000}
+                    // onClose={handleClose}
+                    message="Note archived"
+                // action={action}
+                />
             </BoxStyle>
         </Fragment>
     );

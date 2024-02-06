@@ -1,4 +1,14 @@
-import { Alert, Box, Button, IconButton, Link, OutlinedInput, TextField, Typography, styled } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  IconButton,
+  Link,
+  OutlinedInput,
+  TextField,
+  Typography,
+  styled,
+} from "@mui/material";
 import Done from "./assets/Done.svg";
 
 export const BoxStyle = styled(Box)({
@@ -11,18 +21,18 @@ export const BoxStyle = styled(Box)({
   borderRadius: "10px",
   padding: "20px",
   margin: "50px auto ",
-  backgroundImage:`url(${Done})`,
+  backgroundImage: `url(${Done})`,
   backgroundRepeat: "no-repeat",
-  backgroundPositionX:"center",
+  backgroundPositionX: "center",
   backgroundSize: "200px",
-  height:"auto",
-  backgroundColor:" rgba(244, 194, 127, 0.67);",
+  height: "auto",
+  backgroundColor: " rgba(244, 194, 127, 0.67);",
 });
 export const TypographyStyle = styled(Typography)({
   color: "#ab003c",
   fontFamily: "cursive",
   margin: "10px",
-  marginTop:"130px",
+  marginTop: "130px",
 });
 export const LinkStyle = styled(Link)({
   color: "#ab003c",
@@ -33,7 +43,7 @@ export const TextFieldStyle = styled(TextField)({
   padding: "0px",
   width: "80%",
   border: "none",
-  borderRadius:"5px",
+  borderRadius: "5px",
   backgroundImage: "linear-gradient(white,#fad4e9)",
 });
 export const OutlinedInputStyle = styled(OutlinedInput)({
@@ -41,12 +51,12 @@ export const OutlinedInputStyle = styled(OutlinedInput)({
   padding: "0px",
   width: "80%",
   border: "none",
-  borderRadius:"5px",
+  borderRadius: "5px",
   backgroundImage: "linear-gradient(white,#fad4e9)",
 });
 export const IconButtonStyle = styled(IconButton)({
-  padding:"30px",
-})
+  padding: "30px",
+});
 export const ButtonStyle = styled(Button)({
   margin: "auto",
   fontFamily: "cursive",
@@ -64,7 +74,7 @@ export const ButtonStyle = styled(Button)({
   "&:hover": {
     backgroundImage: "linear-gradient(to right, yellow, #ef6c00)",
   },
-})
+});
 export const AlertStyle = styled(Alert)({
-margin:"10px",
-})
+  margin: "10px",
+});
