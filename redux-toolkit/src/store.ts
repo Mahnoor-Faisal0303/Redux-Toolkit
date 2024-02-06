@@ -1,10 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
+import todoReducer from "./Store/Slices/todoSlice";
+import loginReducer from "./Store/Slices/loginSlice";
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    // Define your reducers here
-    // e.g., counter: counterReducer,
+    todos: todoReducer,
+    logins:loginReducer
   },
 });
 
-export default store;
+export type RootState = ReturnType<typeof store.getState>;
